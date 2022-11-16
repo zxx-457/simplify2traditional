@@ -1,0 +1,62 @@
+{
+  "name": "simplify2traditional",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "repository": {
+    "url": "zxx-457/simplify2traditional",
+    "type": "git"
+  },
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "test",
+    "start": "",
+    "clean": "rm -fr dist",
+    "lint": "",
+    "build": "npm run clean && npm run lint && tsc --project tsconfig.json && npm run bundle:esm && npm run bundle:esm:min && npm run bundle:umd && npm run bundle:umd:min ",
+    "bundle:esm": "rollup dist/index.js --file dist/index.mjs --format esm",
+    "bundle:esm:min": "terser --ecma 6 --compress --mangle --module -o dist/index.min.mjs -- dist/index.mjs && gzip -9 -c dist/index.min.mjs > dist/index.min.mjs.gz",
+    "bundle:umd": "rollup dist/index.js --file dist/index.umd.js --format umd --name sayHello",
+    "bundle:umd:min": "terser --ecma 6 --compress --mangle -o dist/index.umd.min.js -- dist/index.umd.js && gzip -9 -c dist/index.umd.min.js > dist/index.umd.min.js.gz",
+    "prepublish": "yarn build "
+  },
+  "release": {
+    "branch": "master"
+  },
+  "devDependencies": {
+    "ava": "^5.1.0",
+    "lint": "^0.7.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^2.2.1",
+    "rollup": "^3.3.0",
+    "terser": "^5.15.1",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.1.2"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,json,ts}": [
+        "prettier --write",
+        "git add"
+      ],
+      "*.md": [
+        "markdown-toc -i",
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "dist/**",
+      "mod.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm t && lint-staged"
+    }
+  },
+  "dependencies": {}
+}

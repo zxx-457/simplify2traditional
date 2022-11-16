@@ -1,35 +1,34 @@
 import { Translate } from "./ToolGood.Words.Translate"
-
 const translator = new Translate()
 /**
- * 转繁体中文
+ * 简体 -> 台湾繁体
  * @param {string} text 原文本
  * @return {string} 转换结果
  */
-export function Simplify2Traditional_tw(text: string): string {
+export function simp_to_tradi_hk(text: string): string {
   return translator.ToTraditionalChinese(text, 2)
 }
 /**
- * 转繁体中文
+ * 简体 -> 香港繁体
  * @param {string} text 原文本
  * @return {string} 转换结果
  */
-export function Simplify2Traditional_hk(text: string): string {
+export function simp_to_tradi_tw(text: string): string {
   return translator.ToTraditionalChinese(text, 1)
 }
 /**
- * 转繁体中文
+ * 香港繁体 -> 简体
  * @param {string} text 原文本
  * @return {string} 转换结果
  */
-export function Traditional2Simplify_hk(text: string): string {
+export function tradi_to_simp_hk(text: string): string {
   return translator.ToSimplifiedChinese(text, 1)
 }
 /**
- * 转繁体中文
+ * 台湾繁体 -> 简体
  * @param {string} text 原文本
  * @return {string} 转换结果
  */
-export function Traditional2Simplify_tw(text: string): string {
+export function tradi_to_simp_tw(text: string): string {
   return translator.ToSimplifiedChinese(text, 2)
 }
